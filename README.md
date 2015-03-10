@@ -6,3 +6,7 @@ To Create a platform to help the public in raising problems that can solved by t
     Spray.io - for the rest api
     DB- Mysql
     EmberJs and Bootstrap for thr UI
+
+### notes
+
+    The application layer and rest layer should not be dependent like a web application
