@@ -1,5 +1,7 @@
 package in.cybergen.collaborate.api
 
+import in.cybergen.collaborate.api.routes.{ApiRoutes, BaseRoutes}
+
 /**
  * Created by vishnu on 10/3/15.
  */

@@ -1,4 +1,4 @@
-package in.cybergen.collaborate.api
+package in.cybergen.collaborate.api.routes
 
 import spray.routing.HttpService
 
