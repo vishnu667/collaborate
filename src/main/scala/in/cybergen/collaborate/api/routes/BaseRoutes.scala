@@ -13,7 +13,7 @@ trait BaseRoutes extends HttpService with HeaderDirectives with AuthenticationMo
     get { 
       val user = "sample name"
       val token:String = authenticateUser(user,id)
-        setCookie(HttpCookie("auth-token",content = token)) {
+        setCookie(HttpCookie("auth-token",content = token,path=Some("/"))) {
           complete(" login as " + user + " for req " + id + " is authenticated " + token)
         }
     }

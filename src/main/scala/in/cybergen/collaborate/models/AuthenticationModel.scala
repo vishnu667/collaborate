@@ -4,7 +4,6 @@ package in.cybergen.collaborate.models
  * Created by vishnu on 11/3/15.
  */
 trait AuthenticationModel {
-
   def authenticateUser(userName: String, password: String): String = {
     if (password == "usr1") {
       "CODE_USR1"
