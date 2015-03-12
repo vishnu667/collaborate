@@ -6,3 +6,10 @@ package in.cybergen.collaborate.models
 class User(userName:String=null,token:String=null,userID:Long=0) {
   
 }
+
+object User {
+  def getUser(token:String):
+  User ={
+    new User(userName = "vishnu",token=token,userID = 1001)
+  }  
+}
