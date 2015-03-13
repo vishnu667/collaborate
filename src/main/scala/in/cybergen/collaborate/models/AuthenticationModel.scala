@@ -18,7 +18,7 @@ trait AuthenticationModel {
   }
 
   def isAuthenticated(token: String): Boolean = {
-    if (token.eq("CODE_USR1") || token.eq("CODE_USR2")) {
+    if (token=="CODE_USR1" || token=="CODE_USR2") {
       true
     } else {
       false

@@ -17,11 +17,11 @@ trait Routes extends BaseRoutes with SecurityDirectives with AuthenticationModel
         apiRoutes
       } 
     } ~ pathPrefix("auth") {
-        path("login") {
+        path("login"/Segment) {pass=>
           get {
             val user = "sample name"
-            val token: String = authenticateUser(user, "pass")
-            if(token==None){
+            val token: String = authenticateUser(user, pass)
+            if(token!=None){
               setCookie(HttpCookie("auth-token", content = token, path = Some("/"))) {
                 complete(" login as " + user + " for req  is authenticated " + token)
               }
