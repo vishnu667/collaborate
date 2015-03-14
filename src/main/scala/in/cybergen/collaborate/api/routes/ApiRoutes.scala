@@ -1,19 +1,21 @@
 package in.cybergen.collaborate.api.routes
 
-import in.cybergen.collaborate.models.AuthenticationModel
-import spray.http.HttpCookie
 
+import in.cybergen.collaborate.db.DB
+import in.cybergen.collaborate.models.{User, AuthenticationModel}
 import spray.routing._
-import spray.routing.directives.{SecurityDirectives, CookieDirectives}
 
 /**
  * Created by vishnu on 10/3/15.
  */
-trait ApiRoutes extends HttpService with AuthenticationModel with SecurityDirectives {
+trait ApiRoutes extends HttpService with AuthenticationModel with DB {
+
   def apiRoutes =
       path("user") {
         get { ctx =>
-          ctx.complete(" api authenticated user ")
+          val user : User = getUser(ctx.request.cookies.find(_.name == "auth-token").get.content)
+//          execute("show tables")
+          ctx.complete(" api authenticated user "+user.userName)
         }
       }
 }
