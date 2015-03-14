@@ -18,7 +18,7 @@ trait AuthenticationModel {
   }
 
   def isAuthenticated(token: String): Boolean = {
-    if (token=="CODE_USR1" || token=="CODE_USR2") {
+    if (token == "CODE_USR1" || token == "CODE_USR2") {
       true
     } else {
       false
@@ -27,7 +27,7 @@ trait AuthenticationModel {
 
   def authorizeUser(check: RequestContext): Boolean = {
     val cookies: Option[HttpCookie] = check.request.cookies.find(_.name == "auth-token")
-    if(cookies==None)
+    if (cookies == None)
       false
     else
       isAuthenticated(cookies.get.content)

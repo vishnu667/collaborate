@@ -10,11 +10,11 @@ import spray.routing._
 trait ApiRoutes extends HttpService with AuthenticationModel {
 
   def apiRoutes =
-      path("user") {
-        get { ctx =>
-          val user : User = getUser(ctx.request.cookies.find(_.name == "auth-token").get.content)
-//          execute("show tables")
-          ctx.complete(" api authenticated user "+user.userName)
-        }
+    path("user") {
+      get { ctx =>
+        val user: User = getUser(ctx.request.cookies.find(_.name == "auth-token").get.content)
+        //          execute("show tables")
+        ctx.complete(" api authenticated user " + user.userName)
       }
+    }
 }

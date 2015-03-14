@@ -15,28 +15,28 @@ trait Routes extends BaseRoutes with SecurityDirectives with AuthenticationModel
       // Authenticated Routes Returns 403 Forbidden if not Authorized
       authorize(check => authorizeUser(check)) {
         apiRoutes
-      } 
-    } ~ pathPrefix("auth") {
-        path("login"/Segment) {pass=>
-          get {
-            val user = "sample name"
-            val token: String = authenticateUser(user, pass)
-            if(token!=None){
-              setCookie(HttpCookie("auth-token", content = token, path = Some("/"))) {
-                complete(" login as " + user + " for req  is authenticated " + token)
-              }
-            }else{
-              complete("Auth Failed")
-            }
-          }
-        } ~ path("Tlogin") {
-          entity(as[String]) { foo =>
-            complete {
-              foo
-            }
-          }
-        } ~ baseRoutes
-
       }
+    } ~ pathPrefix("auth") {
+      path("login" / Segment) { pass =>
+        get {
+          val user = "sample name"
+          val token: String = authenticateUser(user, pass)
+          if (token != None) {
+            setCookie(HttpCookie("auth-token", content = token, path = Some("/"))) {
+              complete(" login as " + user + " for req  is authenticated " + token)
+            }
+          } else {
+            complete("Auth Failed")
+          }
+        }
+      } ~ path("Tlogin") {
+        entity(as[String]) { foo =>
+          complete {
+            foo
+          }
+        }
+      } ~ baseRoutes
+
     }
+  }
 }
