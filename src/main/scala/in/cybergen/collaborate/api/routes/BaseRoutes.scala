@@ -9,8 +9,8 @@ import spray.routing.directives.HeaderDirectives
  */
 trait BaseRoutes extends HttpService with HeaderDirectives with AuthenticationModel {
   def baseRoutes = path("") {
-      get {
-        complete("home page ")
-      }
+    get {
+      complete("home page ")
     }
+  }
 }
