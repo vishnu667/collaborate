@@ -9,9 +9,10 @@ import com.github.mauricio.async.db.mysql.pool.MySQLConnectionFactory
 import com.github.mauricio.async.db.pool.ConnectionPool
 import com.github.mauricio.async.db.pool.PoolConfiguration
 import akka.actor.ActorSystem
+import in.cybergen.collaborate.collaborateActorSystem
 
-class Pool(system: ActorSystem) {
-
+class Pool() {
+  val system:ActorSystem = collaborateActorSystem.system
   /*
   //TODO read configurations from configuration file instead
   db {
