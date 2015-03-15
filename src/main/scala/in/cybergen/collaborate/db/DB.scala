@@ -29,7 +29,17 @@ trait DB {
    */
   def fetch(query: String, values: Any*): Future[Option[Seq[RowData]]] =
     execute(query, values: _*).map(_.rows)
-
+  
+  def fetchResultSet(query: String, values: Any*):Seq[RowData] ={
+    val result:Seq[RowData] = Seq()
+    for {
+      queryResult <- fetch(query,values)
+      resultSet <- queryResult
+      rowData <- resultSet
+    } result ++ rowData
+    result
+  }
+  
   
   def printAll() {
     for {

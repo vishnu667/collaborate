@@ -14,8 +14,10 @@ trait ApiRoutes extends HttpService with AuthenticationModel with DB {
     path("user") {
       get { ctx =>
         val user: User = getUser(ctx.request.cookies.find(_.name == "auth-token").get.content)
-
-        ctx.complete(" api authenticated user " + user.userName)
+        var response=""
+        fetchResultSet("select * from users").foreach(f => response = response + f("username").asInstanceOf[String])
+        
+        ctx.complete(" api authenticated user " + user.userName + response)
       }
     }
 }
