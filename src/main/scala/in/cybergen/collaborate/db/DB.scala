@@ -1,11 +1,8 @@
 package in.cybergen.collaborate.db
 
 /**
- * Created by vishnu on 13/3/15.
+ * Myslq Connector
  */
-
-import akka.io.Tcp.Write
-import akka.util.ByteString
 
 import scala.concurrent.{ExecutionContext, Future}
 import com.github.mauricio.async.db.{RowData, QueryResult}
@@ -33,8 +30,8 @@ trait DB {
   def fetch(query: String, values: Any*): Future[Option[Seq[RowData]]] =
     execute(query, values: _*).map(_.rows)
 
+  
   def printAll() {
-    respond("values in db are:")
     for {
       queryResult <- fetch("SELECT * FROM users")
       resultSet <- queryResult
