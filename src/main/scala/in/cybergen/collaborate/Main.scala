@@ -47,7 +47,8 @@ class ServerServiceActor extends Actor with Routes {
   def actorRefFactory = context
 
   //rootRoute is defined in "in.cybergen.collaborate.api.Routes"
-  def receive = runRoute(rootRoute)
+  //def receive = runRoute(rootRoute)
+  def receive = runRoute(testRoute)
 
   implicit def dispatcher: ExecutionContext = collaborateActorSystem.ec
 }

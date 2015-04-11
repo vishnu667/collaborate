@@ -3,13 +3,25 @@ package in.cybergen.collaborate.api
 import in.cybergen.collaborate.api.routes.{AuthenticatedRoutes, ApiRoutes, BaseRoutes}
 import in.cybergen.collaborate.models.AuthenticationModel
 import spray.http.HttpCookie
-import spray.routing.directives.SecurityDirectives
+import spray.routing.directives.{HeaderDirectives, SecurityDirectives}
 
 /**
  * Created by vishnu on 10/3/15.
  */
-trait Routes extends BaseRoutes with SecurityDirectives with AuthenticationModel with ApiRoutes {
-  def rootRoute = {
+trait Routes extends BaseRoutes with SecurityDirectives with AuthenticationModel with ApiRoutes with HeaderDirectives {
+  def testRoute= headerValueByName("host") { userId =>
+    if(userId=="localhost:8088")
+      site1Route
+    else
+      site2Route
+  }
+  def site1Route = path("ping"){
+    complete("this is site 1 pong")
+  }
+  def site2Route = path("ping"){
+    complete("this is default site pong")
+  }
+  def rootRoute= {
 
     pathPrefix("api") {
       // Authenticated Routes Returns 403 Forbidden if not Authorized
