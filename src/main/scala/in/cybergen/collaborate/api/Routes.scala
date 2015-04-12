@@ -7,19 +7,17 @@ import spray.routing.directives.{HeaderDirectives, SecurityDirectives}
 
 /**
  * Created by vishnu on 10/3/15.
+ * Routes Page
  */
 trait Routes extends BaseRoutes with SecurityDirectives with AuthenticationModel with ApiRoutes with HeaderDirectives {
   def testRoute= headerValueByName("host") { userId =>
     if(userId=="localhost:8088")
-      site1Route
+      rootRoute
     else
       site2Route
   }
-  def site1Route = path("ping"){
-    complete("this is site 1 pong")
-  }
   def site2Route = path("ping"){
-    complete("this is default site pong")
+    complete("this is default site try localhost instead")
   }
   def rootRoute= {
 
