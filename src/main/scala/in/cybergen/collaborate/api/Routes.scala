@@ -10,16 +10,18 @@ import spray.routing.directives.{HeaderDirectives, SecurityDirectives}
  * Routes Page
  */
 trait Routes extends BaseRoutes with SecurityDirectives with AuthenticationModel with ApiRoutes with HeaderDirectives {
-  def testRoute= headerValueByName("host") { userId =>
-    if(userId=="localhost:8088")
+  def testRoute = headerValueByName("host") { userId =>
+    if (userId == "localhost:8088")
       rootRoute
     else
       site2Route
   }
-  def site2Route = path("ping"){
+
+  def site2Route = path("ping") {
     complete("this is default site try localhost instead")
   }
-  def rootRoute= {
+
+  def rootRoute = {
 
     pathPrefix("api") {
       // Authenticated Routes Returns 403 Forbidden if not Authorized
