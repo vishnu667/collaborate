@@ -18,7 +18,7 @@ trait Routes extends BaseRoutes with SecurityDirectives with AuthenticationModel
   }
 
   def site2Route = path("ping") {
-    complete("this is default site try localhost instead")
+    complete("this is default site try localhost instead ")
   }
 
   def rootRoute = {
